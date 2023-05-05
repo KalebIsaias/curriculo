@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Curriculo</title>
+</head>
+<body>
+    <header>
+        <h1>Curriculo</h1>
+    </header>
+
+    <section>
+        <div id="infoPessoal">
+            
+            <div id=""infoText>
+                <p id="nome">Nome: </p>
+                <p id="idade">Idade: </p>
+                <p id="email">Email: </p>
+            </div>
+            <button type="button" id="button">Alterar dados</button>
+        </div>
+
+    </section>
+
+    <footer>
+        <p></p>
+    </footer>
+
+    <script>
+        const url = '/curriculo';
+
+        fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            let curriculo = data;
+            let nome = '';
+            let email = '';
+            let idade = '';
+
+            curriculo.map(function(curriculo) {
+            nome += `${curriculo.nome}`;
+            email += `${curriculo.email}`;
+            idade += `${curriculo.idade}`;
+            });
+
+            document.getElementById('nome').innerHTML += nome;
+            document.getElementById('email').innerHTML += email;
+            document.getElementById('idade').innerHTML += idade;
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+    </script>
+</body>
+</html>
